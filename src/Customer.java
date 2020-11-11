@@ -1,4 +1,5 @@
 public class Customer {
+    private int ID;
     private String name;
     private String address;
     private int zip_code;
@@ -8,7 +9,8 @@ public class Customer {
     private String email;
 
 
-    public Customer(String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email) {
+    public Customer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email) {
+        this.ID = ID;
         this.name = name;
         this.address = address;
         this.zip_code = zip_code;
@@ -16,6 +18,28 @@ public class Customer {
         this.mobile_number = mobile_number;
         this.phone_number = phone_number;
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", zip_code=" + zip_code +
+                ", city='" + city + '\'' +
+                ", mobile_number=" + mobile_number +
+                ", phone_number=" + phone_number +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {

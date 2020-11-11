@@ -5,12 +5,22 @@ public class CompanyCustomer extends Customer {
     private int company_phone_number;
     private int CRN;
 
-    public CompanyCustomer(String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email, String company_name, String company_address, int company_phone_number, int CRN) {
-        super(name, address, zip_code, city, mobile_number, phone_number, email);
+    public CompanyCustomer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email, String company_name, String company_address, int company_phone_number, int CRN) {
+        super(ID, name, address, zip_code, city, mobile_number, phone_number, email);
         this.company_name = company_name;
         this.company_address = company_address;
         this.company_phone_number = company_phone_number;
         this.CRN = CRN;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyCustomer{" +
+                "company_name='" + company_name + '\'' +
+                ", company_address='" + company_address + '\'' +
+                ", company_phone_number=" + company_phone_number +
+                ", CRN=" + CRN +
+                '}';
     }
 
     public String getCompany_name() {
