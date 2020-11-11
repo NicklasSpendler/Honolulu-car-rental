@@ -1,5 +1,5 @@
 public class Customer {
-    private int ID;
+    private int CustomerID;
     private String name;
     private String address;
     private int zip_code;
@@ -9,8 +9,8 @@ public class Customer {
     private String email;
 
 
-    public Customer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email) {
-        this.ID = ID;
+    public Customer(int CustomerID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email) {
+        this.CustomerID = CustomerID;
         this.name = name;
         this.address = address;
         this.zip_code = zip_code;
@@ -20,10 +20,13 @@ public class Customer {
         this.email = email;
     }
 
+    public Customer() {
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "ID=" + ID +
+                "ID=" + CustomerID +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", zip_code=" + zip_code +
@@ -34,12 +37,12 @@ public class Customer {
                 '}';
     }
 
-    public int getID() {
-        return ID;
+    public int getCustomerID() {
+        return CustomerID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setCustomerID(int ID) {
+        this.CustomerID = ID;
     }
 
     public String getName() {

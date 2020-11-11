@@ -1,27 +1,32 @@
 public class PrivateCustomer extends Customer {
-    String licenseNumber;
+    int licenseNumber;
     String driver_since_date;
 
 
-    public PrivateCustomer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email, String licenseNumber, String driver_since_date) {
+    public PrivateCustomer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email, int licenseNumber, String driver_since_date) {
         super(ID, name, address, zip_code, city, mobile_number, phone_number, email);
         this.licenseNumber = licenseNumber;
         this.driver_since_date = driver_since_date;
     }
 
+    public PrivateCustomer() {
+    }
+
     @Override
     public String toString() {
         return "PrivateCustomer{" +
-                "licenseNumber='" + licenseNumber + '\'' +
+                "ID=" + getCustomerID() + "\'" +
+                ", Name=" + getName() + "\'" +
+                ", licenseNumber=" + licenseNumber +
                 ", driver_since_date='" + driver_since_date + '\'' +
                 '}';
     }
 
-    public String getLicenseNumber() {
+    public int getLicenseNumber() {
         return licenseNumber;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
+    public void setLicenseNumber(int licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
 

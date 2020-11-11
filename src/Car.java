@@ -1,4 +1,5 @@
 public class Car{
+    private int carID;
     private boolean automaticGear;
     private boolean airCondition;
     private boolean cruiseControl;
@@ -11,7 +12,8 @@ public class Car{
     private String registrationDate;
     private int odometer;
 
-    public Car(boolean automaticGear, boolean airCondition, boolean cruiseControl, int amountOfSeats, int hp, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer) {
+    public Car(int carID, boolean automaticGear, boolean airCondition, boolean cruiseControl, int amountOfSeats, int hp, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer) {
+        this.carID = carID;
         this.automaticGear = automaticGear;
         this.airCondition = airCondition;
         this.cruiseControl = cruiseControl;
@@ -25,10 +27,12 @@ public class Car{
         this.odometer = odometer;
     }
 
+
     @Override
     public String toString() {
         return "Car{" +
-                "automaticGear=" + automaticGear +
+                "carID=" + carID +
+                ", automaticGear=" + automaticGear +
                 ", airCondition=" + airCondition +
                 ", cruiseControl=" + cruiseControl +
                 ", amountOfSeats=" + amountOfSeats +
@@ -40,6 +44,14 @@ public class Car{
                 ", registrationDate='" + registrationDate + '\'' +
                 ", odometer=" + odometer +
                 '}';
+    }
+
+    public int getCarID() {
+        return carID;
+    }
+
+    public void setCarID(int carID) {
+        this.carID = carID;
     }
 
     public boolean isAutomaticGear() {
