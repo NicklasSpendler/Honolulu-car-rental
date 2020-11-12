@@ -86,7 +86,6 @@ public class Honolulu {
     public static void createCustomer(FileHandler filehandler, Scanner input){
         int newID = getFreeCustomerID(filehandler);
 
-
         System.out.println("======Create Customer======");
         System.out.println("Which type of customer? P = Private / C = Company");
         String customerType = input.next();
@@ -107,7 +106,7 @@ public class Honolulu {
         int customerMobileNumber = input.nextInt();
         System.out.println("Write Customer phone number");
         int customerPhoneNumber = input.nextInt();
-
+        // Blev ikke færdig med createCustomer, fordi Oliver skulle spille LoL :)
     }
 
     public static void createCar(FileHandler filehandler, Scanner input){
