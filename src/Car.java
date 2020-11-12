@@ -11,8 +11,10 @@ public class Car{
     private int plateNumber;
     private String registrationDate;
     private int odometer;
+    private int ccm;
+    private boolean leatherseats;
 
-    public Car(int carID, boolean automaticGear, boolean airCondition, boolean cruiseControl, int amountOfSeats, int hp, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer) {
+    public Car(int carID, boolean automaticGear, boolean airCondition, boolean cruiseControl, int amountOfSeats, int hp, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, int ccm, boolean leatherseats) {
         this.carID = carID;
         this.automaticGear = automaticGear;
         this.airCondition = airCondition;
@@ -25,25 +27,36 @@ public class Car{
         this.plateNumber = plateNumber;
         this.registrationDate = registrationDate;
         this.odometer = odometer;
+        this.ccm = ccm;
+        this.leatherseats = leatherseats;
     }
 
+    public void getRentalGroup(){
+        if(ccm > 3000 && leatherseats == true){
+            System.out.println("Luxury");
+        }else if(amountOfSeats >= 7){
+            System.out.println("Family");
+        }else if(hp > 200){
+            System.out.println("Sport");
+        }else{
+            System.out.println("everything else");
+        }
+    }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carID=" + carID +
-                ", automaticGear=" + automaticGear +
-                ", airCondition=" + airCondition +
-                ", cruiseControl=" + cruiseControl +
-                ", amountOfSeats=" + amountOfSeats +
-                ", hp=" + hp +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", fuelType='" + fuelType + '\'' +
-                ", plateNumber=" + plateNumber +
-                ", registrationDate='" + registrationDate + '\'' +
-                ", odometer=" + odometer +
-                '}';
+    public int getCcm() {
+        return ccm;
+    }
+
+    public void setCcm(int ccm) {
+        this.ccm = ccm;
+    }
+
+    public boolean isLeatherseats() {
+        return leatherseats;
+    }
+
+    public void setLeatherseats(boolean leatherseats) {
+        this.leatherseats = leatherseats;
     }
 
     public int getCarID() {

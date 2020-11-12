@@ -67,7 +67,7 @@ public class FileHandler {
 
             FileWriter myWriter = new FileWriter("carData.txt", true);
             for (int i = 0; i <= carList.size() - 1; i++) {
-                myWriter.write(carList.get(i).getCarID() + " " + carList.get(i).isAutomaticGear() + " " + carList.get(i).isAirCondition() + " " + carList.get(i).isCruiseControl() + " " +  carList.get(i).getAmountOfSeats() + " " + carList.get(i).getHp() + " " + carList.get(i).getBrand() + " " + carList.get(i).getModel() + " " + carList.get(i).getFuelType() + " " + carList.get(i).getPlateNumber() + " " + carList.get(i).getRegistrationDate() + " " + carList.get(i).getOdometer());
+                myWriter.write(carList.get(i).getCarID() + " " + carList.get(i).isAutomaticGear() + " " + carList.get(i).isAirCondition() + " " + carList.get(i).isCruiseControl() + " " +  carList.get(i).getAmountOfSeats() + " " + carList.get(i).getHp() + " " + carList.get(i).getBrand() + " " + carList.get(i).getModel() + " " + carList.get(i).getFuelType() + " " + carList.get(i).getPlateNumber() + " " + carList.get(i).getRegistrationDate() + " " + carList.get(i).getOdometer() + " " + carList.get(i).getCcm() + " " + carList.get(i).isLeatherseats());
                 if (i != carList.size() - 1) {
                     myWriter.write("\n");
                 }
