@@ -1,6 +1,6 @@
 public class PrivateCustomer extends Customer {
-    int licenseNumber;
-    String driver_since_date;
+    private int licenseNumber;
+    private String driver_since_date;
 
 
     public PrivateCustomer(int ID, String name, String address, int zip_code, String city, int mobile_number, int phone_number, String email, int licenseNumber, String driver_since_date) {

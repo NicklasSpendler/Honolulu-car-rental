@@ -62,18 +62,54 @@ public class FileHandler {
 
     public void writeCarToFile(){
         try {
-            FileWriter clearContent = new FileWriter("CarData.txt", false);
+            FileWriter clearContent = new FileWriter("carData.txt", false);
             clearContent.write("");
 
             FileWriter myWriter = new FileWriter("carData.txt", true);
             for (int i = 0; i <= carList.size() - 1; i++) {
-                myWriter.write(carList.get(i).getCarID() + " " + carList.get(i).isAutomaticGear() + " " + carList.get(i).isAirCondition() + " " + carList.get(i).isCruiseControl() + " " +  carList.get(i).getAmountOfSeats() + " " + carList.get(i).getHp() + " " + carList.get(i).getBrand() + " " + carList.get(i).getModel() + " " + carList.get(i).getFuelType() + " " + carList.get(i).getPlateNumber() + " " + carList.get(i).getRegistrationDate() + " " + carList.get(i).getOdometer() + " " + carList.get(i).getCcm() + " " + carList.get(i).isLeatherseats());
-                if (i != carList.size() - 1) {
+                if (carList.get(i).getClass().getName() == "Family"){
+                    Family tempFamily;
+                    tempFamily = (Family) carList.get(i);
+                    myWriter.write("Family: " + tempFamily.getCarID() + " " + tempFamily.getBrand() + " " + tempFamily.getModel() + " " + tempFamily.getFuelType() + " " + tempFamily.getPlateNumber() + " " + tempFamily.getRegistrationDate() + " " + tempFamily.getOdometer() + " " + tempFamily.isManuelGear() + " " + tempFamily.isAirCondition() + " " + tempFamily.isCruiseControl() + " " + tempFamily.isSevenSeatsOrMore());
+                }else if (carList.get(i).getClass().getName() == "Luxury"){
+                    Luxury tempLuxury;
+                    tempLuxury = (Luxury) carList.get(i);
+                    myWriter.write("Luxury: " + tempLuxury.getCarID() + " " + tempLuxury.getBrand() + " " + tempLuxury.getModel() + " " + tempLuxury.getFuelType() + " " + tempLuxury.getPlateNumber() + " " + tempLuxury.getRegistrationDate() + " " + tempLuxury.getOdometer() + " " + tempLuxury.getCcm() + " " + tempLuxury.isAutomaticGear() + " " + tempLuxury.isAirCondition() + " " + tempLuxury.isCruiseControl());
+                }else if (carList.get(i).getClass().getName() == "Sport"){
+                    Sport tempSport;
+                    tempSport = (Sport) carList.get(i);
+                    myWriter.write("Sport: " + tempSport.getCarID() + " " + tempSport.getBrand() + " " + tempSport.getModel() + " " + tempSport.getFuelType() + " " + tempSport.getPlateNumber() + " " + tempSport.getRegistrationDate() + " " + tempSport.getOdometer() + " " + tempSport.isManualGear() + " " + tempSport.getHp());
+                }
+                if (i != carList.size() - 1){
                     myWriter.write("\n");
                 }
             }
             myWriter.close();
         } catch (IOException e) {
+            System.out.println("Cant write car to file");
+            e.printStackTrace();
+        }
+    }
+
+    public void readCarFromFile(){
+        try {
+            File carFile = new File("carData.txt");
+            Scanner myReader = new Scanner(carFile);
+            while (myReader.hasNextLine()) {
+                String carType = myReader.next();
+                if (carType.contains("Family: ")) {
+                    Family tempFamily = new Family(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
+                    carList.add(tempFamily);
+                } else if (carType.contains("Luxury: ")) {
+                    Luxury tempLuxury = new Luxury(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
+                    carList.add(tempLuxury);
+                } else if (carType.contains("Sport: ")) {
+                    Sport tempSport = new Sport(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextInt());
+                    carList.add(tempSport);
+                }
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("Can't read the Car File");
             e.printStackTrace();
         }
     }
