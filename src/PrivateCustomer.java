@@ -15,7 +15,14 @@ public class PrivateCustomer extends Customer {
     @Override
     public String toString() {
         return "PrivateCustomer{" +
-                "ID=" + getCustomerID() + "\'" +
+                "ID ='" + getCustomerID() + '\'' +
+                ", name ='" + getName() + '\'' +
+                ", address ='" + getAddress() + '\'' +
+                ", zip_code ='" + getZip_code() + '\'' +
+                ", city ='" + getCity() + '\'' +
+                ", mobile_number ='" + getMobile_number() + '\'' +
+                ", phone_number ='" + getPhone_number() +'\'' +
+                ", email ='" + getEmail() + '\'' +
                 ", Name=" + getName() + "\'" +
                 ", licenseNumber=" + licenseNumber +
                 ", driver_since_date='" + driver_since_date + '\'' +

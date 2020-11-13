@@ -46,15 +46,17 @@ public class Honolulu {
     }
 
     public static void showMenu(FileHandler filehandler, Scanner input){
-        System.out.println("C = Show Cars\nU = Show Customers\nR = Show rentals");
+        System.out.println("C = Show Cars\nU = Show Customers\nR = Show rentals\nB = Back");
 
         String choice = input.next();
         if(choice.equalsIgnoreCase("c")){
             showCar(filehandler, input);
         }else if(choice.equalsIgnoreCase("u")){
-
+            showCustomer(filehandler, input);
         }else if(choice.equalsIgnoreCase("r")){
 
+        }else if(choice.equalsIgnoreCase("b")){
+            mainmenu(filehandler,input);
         }
     }
 
@@ -86,6 +88,26 @@ public class Honolulu {
         }
     }
 
+    public static void showCustomer(FileHandler filehandler,Scanner input){
+        ArrayList<CompanyCustomer> companyCustomerList = new ArrayList<>();
+        ArrayList<PrivateCustomer> privateCustomerList = new ArrayList<>();
+        for (int i = 0; i<= filehandler.getCustomerList().size() -1; i++){
+            if(filehandler.getCustomerList().get(i).getClass().getName() == "CompanyCustomer"){
+                companyCustomerList.add((CompanyCustomer) filehandler.getCustomerList().get(i));
+            }else if(filehandler.getCustomerList().get(i).getClass().getName() == "PrivateCustomer"){
+                privateCustomerList.add((PrivateCustomer) filehandler.getCustomerList().get(i));
+            }
+        }
+        System.out.println("======Company Custormers======");
+        for (int i = 0; i<= companyCustomerList.size() -1; i++){
+            System.out.println(companyCustomerList.get(i));
+        }
+        System.out.println("======Private Custormers======");
+        for (int i = 0; i<= privateCustomerList.size() -1; i++){
+            System.out.println(privateCustomerList.get(i));
+        }
+    }
+
     public static void createCustomer(FileHandler filehandler, Scanner input){
         int newID = getFreeCustomerID(filehandler);
 
@@ -94,39 +116,39 @@ public class Honolulu {
         String customerType = input.next();
 
         if(customerType.equalsIgnoreCase("P")){
-            System.out.println("Private customer Chosen\nWrite Customer Name:");
+            System.out.println("Private customer Chosen\nEnter Customer Name:");
         }else if(customerType.equalsIgnoreCase("c")){
-            System.out.println("Company customer Chosen\nWrite Customer Name:");
+            System.out.println("Company customer Chosen\nEnter Customer Name:");
         }
         String customerName = input.next();
-        System.out.println("Write Customers address:");
+        System.out.println("Enter Customers address:");
         String customerAddress = input.next();
-        System.out.println("Write Customers Zip-code:");
+        System.out.println("Enter Customers Zip-code:");
         int customerZipcode = input.nextInt();
-        System.out.println("Write Customer City:");
+        System.out.println("Enter Customer City:");
         String customerCity = input.next();
-        System.out.println("Write Customer mobile number:");
+        System.out.println("Enter Customer mobile number:");
         int customerMobileNumber = input.nextInt();
-        System.out.println("Write Customer phone number:");
+        System.out.println("Enter Customer phone number:");
         int customerPhoneNumber = input.nextInt();
-        System.out.println("Write Customer mail:");
+        System.out.println("Enter Customer mail:");
         String customerMail = input.next();
         if(customerType.equalsIgnoreCase("p")){
-            System.out.println("Write customers driver license number:");
+            System.out.println("Enter customers driver license number:");
             int customerLicenseNumber = input.nextInt();
-            System.out.println("Write the date when customer got his/her license:");
+            System.out.println("Enter the date when customer got his/her license:");
             String driver_since_date = input.next();
 
             PrivateCustomer tempCustomer = new PrivateCustomer(newID, customerName, customerAddress, customerZipcode, customerCity, customerMobileNumber,customerPhoneNumber,customerMail,customerLicenseNumber,driver_since_date);
             filehandler.getCustomerList().add(tempCustomer);
         }else if(customerType.equalsIgnoreCase("c")){
-            System.out.println("Write company name:");
+            System.out.println("Enter company name:");
             String customerCompanyName = input.next();
-            System.out.println("Write company address:");
+            System.out.println("Enter company address:");
             String customerCompanyAddress = input.next();
-            System.out.println("Write company phone number:");
+            System.out.println("Enter company phone number:");
             int customerCompanyPhoneNumber = input.nextInt();
-            System.out.println("Write company CRN (Company registration number):");
+            System.out.println("Enter company CRN (Company registration number):");
             int customerCompanyCrn = input.nextInt();
 
             CompanyCustomer tempCustomer = new CompanyCustomer(newID, customerName, customerAddress, customerZipcode, customerCity, customerMobileNumber,customerPhoneNumber,customerMail,customerCompanyName,customerCompanyAddress,customerCompanyPhoneNumber,customerCompanyCrn);
@@ -143,7 +165,6 @@ public class Honolulu {
 
     public static void createCar(FileHandler filehandler, Scanner input){
         System.out.println("======Create Car======");
-
     }
 
     public static int getFreeCustomerID(FileHandler filehandler){

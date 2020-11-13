@@ -16,7 +16,15 @@ public class CompanyCustomer extends Customer {
     @Override
     public String toString() {
         return "CompanyCustomer{" +
-                "company_name='" + company_name + '\'' +
+                "ID ='" + getCustomerID() + '\'' +
+                ", name ='" + getName() + '\'' +
+                ", address ='" + getAddress() + '\'' +
+                ", zip_code ='" + getZip_code() + '\'' +
+                ", city ='" + getCity() + '\'' +
+                ", mobile_number ='" + getMobile_number() + '\'' +
+                ", phone_number ='" + getPhone_number() +'\'' +
+                ", email ='" + getEmail() + '\'' +
+                ", company_name='" + company_name + '\'' +
                 ", company_address='" + company_address + '\'' +
                 ", company_phone_number=" + company_phone_number +
                 ", CRN=" + CRN +
