@@ -168,6 +168,11 @@ public class FileHandler {
         }
     }
 
+    public void saveFiles(){
+        writeContractToFile();
+        writeCarToFile();
+        writeCustomerToFile();
+    }
 
     public ArrayList<Contract> getContractList() {
         return contractList;

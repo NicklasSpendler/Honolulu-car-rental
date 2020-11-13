@@ -32,13 +32,16 @@ public class Honolulu {
     }
 
     public static void mainmenu(FileHandler filehandler, Scanner input){
-        System.out.println("S = Show Data\nC= Create Data\nQ = Quit");
+        System.out.println("D = Show Data\nC = Create Data\nS = Save Data\nQ = Quit");
 
         String choice = input.next();
-        if(choice.equalsIgnoreCase("s")){
+        if(choice.equalsIgnoreCase("d")){
             showMenu(filehandler, input);
         }else if(choice.equalsIgnoreCase("c")){
             createMenu(filehandler, input);
+        }else if(choice.equalsIgnoreCase("s")){
+            filehandler.saveFiles();
+            mainmenu(filehandler,input);
         }
     }
 
@@ -93,7 +96,7 @@ public class Honolulu {
         if(customerType.equalsIgnoreCase("P")){
             System.out.println("Private customer Chosen\nWrite Customer Name:");
         }else if(customerType.equalsIgnoreCase("c")){
-            System.out.println("Private customer Chosen\nWrite Customer Name:");
+            System.out.println("Company customer Chosen\nWrite Customer Name:");
         }
         String customerName = input.next();
         System.out.println("Write Customers address:");
@@ -102,11 +105,40 @@ public class Honolulu {
         int customerZipcode = input.nextInt();
         System.out.println("Write Customer City:");
         String customerCity = input.next();
-        System.out.println("Write Customer mobile number");
+        System.out.println("Write Customer mobile number:");
         int customerMobileNumber = input.nextInt();
-        System.out.println("Write Customer phone number");
+        System.out.println("Write Customer phone number:");
         int customerPhoneNumber = input.nextInt();
-        // Blev ikke færdig med createCustomer, fordi Oliver skulle spille LoL :)
+        System.out.println("Write Customer mail:");
+        String customerMail = input.next();
+        if(customerType.equalsIgnoreCase("p")){
+            System.out.println("Write customers driver license number:");
+            int customerLicenseNumber = input.nextInt();
+            System.out.println("Write the date when customer got his/her license:");
+            String driver_since_date = input.next();
+
+            PrivateCustomer tempCustomer = new PrivateCustomer(newID, customerName, customerAddress, customerZipcode, customerCity, customerMobileNumber,customerPhoneNumber,customerMail,customerLicenseNumber,driver_since_date);
+            filehandler.getCustomerList().add(tempCustomer);
+        }else if(customerType.equalsIgnoreCase("c")){
+            System.out.println("Write company name:");
+            String customerCompanyName = input.next();
+            System.out.println("Write company address:");
+            String customerCompanyAddress = input.next();
+            System.out.println("Write company phone number:");
+            int customerCompanyPhoneNumber = input.nextInt();
+            System.out.println("Write company CRN (Company registration number):");
+            int customerCompanyCrn = input.nextInt();
+
+            CompanyCustomer tempCustomer = new CompanyCustomer(newID, customerName, customerAddress, customerZipcode, customerCity, customerMobileNumber,customerPhoneNumber,customerMail,customerCompanyName,customerCompanyAddress,customerCompanyPhoneNumber,customerCompanyCrn);
+            filehandler.getCustomerList().add(tempCustomer);
+        }
+        System.out.println("Would you like to create another Customer?");
+        String option = input.next();
+        if(option.equalsIgnoreCase("y")){
+            createCar(filehandler,input);
+        }else if(option.equalsIgnoreCase("n")){
+            createMenu(filehandler, input);
+        }
     }
 
     public static void createCar(FileHandler filehandler, Scanner input){
@@ -125,6 +157,22 @@ public class Honolulu {
 
         if(alreadyUsedIDs.size() != 0){
             newID = Collections.max(alreadyUsedIDs) + 1;
+        }
+
+        return newID;
+    }
+
+    public static int getFreeCarID(FileHandler fileHandler){
+        ArrayList<Integer> usedID = new ArrayList<>();
+
+        for (int i = 0; i <= fileHandler.getCarList().size() - 1; i++){
+            usedID.add(fileHandler.getCarList().get(i).getCarID());
+        }
+
+        int newID = 1;
+
+        if (usedID.size() != 0){
+            newID = Collections.max(usedID) + 1;
         }
 
         return newID;
