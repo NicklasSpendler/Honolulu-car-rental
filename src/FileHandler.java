@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class FileHandler {
 
     private ArrayList<Customer> customerList = new ArrayList<>();
-    private ArrayList<Contract> contractList = new ArrayList<>();
+    private ArrayList<Rental> rentalList = new ArrayList<>();
     private ArrayList<Car> carList = new ArrayList<>();
 
     public FileHandler(){
@@ -48,9 +48,9 @@ public class FileHandler {
             clearFile.write("");
 
             FileWriter myWriter = new FileWriter("contractData.txt", true);
-            for (int i = 0; i <= contractList.size() - 1; i++){
-                myWriter.write(contractList.get(i).getContractID() + " " + contractList.get(i).getCustomerID() + " " + contractList.get(i).getFromDate() + " " + contractList.get(i).getToDate() + " " + contractList.get(i).getMaxKm() + " " + contractList.get(i).getOdometerStart() + " " + contractList.get(i).getPlateNumber());
-                if (i != contractList.size() - 1){
+            for (int i = 0; i <= rentalList.size() - 1; i++){
+                myWriter.write(rentalList.get(i).getContractID() + " " + rentalList.get(i).getCustomerID() + " " + rentalList.get(i).getFromDate() + " " + rentalList.get(i).getToDate() + " " + rentalList.get(i).getMaxKm() + " " + rentalList.get(i).getOdometerStart() + " " + rentalList.get(i).getPlateNumber());
+                if (i != rentalList.size() - 1){
                     myWriter.write("\n");
                 }
             }
@@ -135,7 +135,7 @@ public class FileHandler {
         }
     }
     public static void readContractFromFile(){
-        ArrayList<Contract> contractArray = new ArrayList<>();
+        ArrayList<Rental> rentalArray = new ArrayList<>();
 
         try {
             File contractFile = new File("contractData.txt");
@@ -174,8 +174,8 @@ public class FileHandler {
         writeCustomerToFile();
     }
 
-    public ArrayList<Contract> getContractList() {
-        return contractList;
+    public ArrayList<Rental> getContractList() {
+        return rentalList;
     }
 
     public ArrayList<Customer> getCustomerList() {

@@ -3,10 +3,14 @@
 ##Todo
 - menu
 - show car - Oliver
-- create Contract
+- create Rental - Nicklas
     * Reference til bil brug id
     * Reference til Customer brug id
     * Fra og med dato
 
-- show Contract
-- get free Contract ID - Guobin
+- Edit Customer
+- Edit Rental
+- Edit Car
+
+- show Rental
+- get free Rental ID - Guobin

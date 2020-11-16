@@ -1,4 +1,4 @@
-public class Contract {
+public class Rental {
     private int contractID;
     private int customerID;
     private int carID;
@@ -8,7 +8,7 @@ public class Contract {
     private int odometerStart;
     private int plateNumber;
 
-    public Contract(int contractID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, int plateNumber) {
+    public Rental(int contractID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, int plateNumber) {
         this.contractID = contractID;
         this.customerID = customerID;
         this.carID = carID;
@@ -21,7 +21,7 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract{" +
+        return "Rental{" +
                 "contractID=" + contractID +
                 ", customerID=" + customerID +
                 ", carID=" + carID +

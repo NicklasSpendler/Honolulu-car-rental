@@ -11,8 +11,8 @@ public class Honolulu {
         filehandler.createFiles("carData");
         filehandler.createFiles("contractData");
 
-        Contract contract1 = new Contract(1, 1, 2, "lol", "lol", 2, 2, 2);
-        filehandler.getContractList().add(contract1);
+        Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, 2);
+        filehandler.getContractList().add(rental1);
 
 /*
         ArrayList<Customer> customers = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Honolulu {
         }else if(choice.equalsIgnoreCase("e")){
             createCustomer(filehandler, input);
         }else if(choice.equalsIgnoreCase("r")){
-
+            createRental(filehandler, input);
         }else if(choice.equalsIgnoreCase("B")){
             mainmenu(filehandler, input);
         }else{
@@ -232,6 +232,17 @@ public class Honolulu {
         }
 
 
+    }
+
+    public static void createRental(FileHandler filehandler, Scanner input){
+        System.out.println("======Create Rental======");
+        System.out.println("Select or create a new customer (S = Select / C = Create)");
+        String choice = input.next();
+        if(choice.equalsIgnoreCase("s")){
+
+        }else if(choice.equalsIgnoreCase("c")){
+            
+        }
     }
 
     public static int getFreeCustomerID(FileHandler filehandler){
