@@ -78,13 +78,30 @@ public class Honolulu {
     }
 
     public static void showCar(FileHandler filehandler, Scanner input){
-        System.out.println("======Car======");
-        if(filehandler.getCarList().size() == 0){
-            System.out.println("There's no cars in the system.");
-        }else{
-            for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
-                System.out.println(filehandler.getCarList().get(i));
+        ArrayList<Family> familyList = new ArrayList<>();
+        ArrayList<Luxury> luxuryList = new ArrayList<>();
+        ArrayList<Sport> sportList = new ArrayList<>();
+        System.out.println("======List of all cars======");
+        for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
+            if (filehandler.getCarList().get(i).getClass().getName() == "Family"){
+                familyList.add((Family) filehandler.getCarList().get(i));
+            }else if (filehandler.getCarList().get(i).getClass().getName() == "Luxury"){
+                luxuryList.add((Luxury) filehandler.getCarList().get(i));
+            }else if (filehandler.getCarList().get(i).getClass().getName() == "Sport"){
+                sportList.add((Sport) filehandler.getCarList().get(i));
             }
+        }
+        System.out.println("======Family======");
+        for (int i = 0; i <= familyList.size() - 1; i++){
+            System.out.println(familyList.get(i));
+        }
+        System.out.println("======Luxury======");
+        for (int i = 0; i <= luxuryList.size() - 1; i++){
+            System.out.println(luxuryList.get(i));
+        }
+        System.out.println("======Sport======");
+        for (int i = 0; i <= sportList.size() - 1; i++){
+            System.out.println(sportList.get(i));
         }
     }
 
@@ -284,5 +301,4 @@ public class Honolulu {
 
         return newID;
     }
-
 }

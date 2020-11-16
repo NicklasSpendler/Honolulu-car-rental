@@ -42,7 +42,7 @@ public class FileHandler {
         }
     }
 
-    public void writeContractToFile(){
+    public void writeRentalToFile(){
         try {
             FileWriter clearFile = new FileWriter("contractData.txt", false);
             clearFile.write("");
@@ -169,7 +169,7 @@ public class FileHandler {
     }
 
     public void saveFiles(){
-        writeContractToFile();
+        writeRentalToFile();
         writeCarToFile();
         writeCustomerToFile();
     }
