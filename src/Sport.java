@@ -1,8 +1,8 @@
 public class Sport extends Car {
     private boolean manualGear;
-    private int hp;
+    private boolean hp;
 
-    public Sport(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean manualGear, int hp) {
+    public Sport(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean manualGear, boolean hp) {
         super(carID, brand, model, fuelType, plateNumber, registrationDate, odometer);
         this.manualGear = manualGear;
         this.hp = hp;
@@ -24,11 +24,11 @@ public class Sport extends Car {
         this.manualGear = manualGear;
     }
 
-    public int getHp() {
+    public boolean isHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(boolean hp) {
         this.hp = hp;
     }
 }

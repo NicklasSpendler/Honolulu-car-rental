@@ -70,15 +70,15 @@ public class FileHandler {
                 if (carList.get(i).getClass().getName() == "Family"){
                     Family tempFamily;
                     tempFamily = (Family) carList.get(i);
-                    myWriter.write("Family: " + tempFamily.getCarID() + " " + tempFamily.getBrand() + " " + tempFamily.getModel() + " " + tempFamily.getFuelType() + " " + tempFamily.getPlateNumber() + " " + tempFamily.getRegistrationDate() + " " + tempFamily.getOdometer() + " " + tempFamily.isManuelGear() + " " + tempFamily.isAirCondition() + " " + tempFamily.isCruiseControl() + " " + tempFamily.isSevenSeatsOrMore());
+                    myWriter.write("Family: " + tempFamily.getCarID() + " " + tempFamily.getBrand() + " " + tempFamily.getModel() + " " + tempFamily.getFuelType() + " " + tempFamily.getPlateNumber() + " " + tempFamily.getRegistrationDate() + " " + tempFamily.getOdometer() + " " + tempFamily.isManualGear() + " " + tempFamily.isAirCondition() + " " + tempFamily.isCruiseControl() + " " + tempFamily.isSevenSeatsOrMore());
                 }else if (carList.get(i).getClass().getName() == "Luxury"){
                     Luxury tempLuxury;
                     tempLuxury = (Luxury) carList.get(i);
-                    myWriter.write("Luxury: " + tempLuxury.getCarID() + " " + tempLuxury.getBrand() + " " + tempLuxury.getModel() + " " + tempLuxury.getFuelType() + " " + tempLuxury.getPlateNumber() + " " + tempLuxury.getRegistrationDate() + " " + tempLuxury.getOdometer() + " " + tempLuxury.getCcm() + " " + tempLuxury.isAutomaticGear() + " " + tempLuxury.isAirCondition() + " " + tempLuxury.isCruiseControl());
+                    myWriter.write("Luxury: " + tempLuxury.getCarID() + " " + tempLuxury.getBrand() + " " + tempLuxury.getModel() + " " + tempLuxury.getFuelType() + " " + tempLuxury.getPlateNumber() + " " + tempLuxury.getRegistrationDate() + " " + tempLuxury.getOdometer() + " " + tempLuxury.isCcm() + " " + tempLuxury.isAutomaticGear() + " " + tempLuxury.isAirCondition() + " " + tempLuxury.isCruiseControl());
                 }else if (carList.get(i).getClass().getName() == "Sport"){
                     Sport tempSport;
                     tempSport = (Sport) carList.get(i);
-                    myWriter.write("Sport: " + tempSport.getCarID() + " " + tempSport.getBrand() + " " + tempSport.getModel() + " " + tempSport.getFuelType() + " " + tempSport.getPlateNumber() + " " + tempSport.getRegistrationDate() + " " + tempSport.getOdometer() + " " + tempSport.isManualGear() + " " + tempSport.getHp());
+                    myWriter.write("Sport: " + tempSport.getCarID() + " " + tempSport.getBrand() + " " + tempSport.getModel() + " " + tempSport.getFuelType() + " " + tempSport.getPlateNumber() + " " + tempSport.getRegistrationDate() + " " + tempSport.getOdometer() + " " + tempSport.isManualGear() + " " + tempSport.isHp());
                 }
                 if (i != carList.size() - 1){
                     myWriter.write("\n");
@@ -101,10 +101,10 @@ public class FileHandler {
                     Family tempFamily = new Family(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempFamily);
                 } else if (carType.contains("Luxury: ")) {
-                    Luxury tempLuxury = new Luxury(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
+                    Luxury tempLuxury = new Luxury(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempLuxury);
                 } else if (carType.contains("Sport: ")) {
-                    Sport tempSport = new Sport(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextInt());
+                    Sport tempSport = new Sport(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempSport);
                 }
             }

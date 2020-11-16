@@ -164,7 +164,74 @@ public class Honolulu {
     }
 
     public static void createCar(FileHandler filehandler, Scanner input){
+        int newID = getFreeCarID(filehandler);
+
         System.out.println("======Create Car======");
+        System.out.println();
+        System.out.println("Which car would you like to create?\nF = Family\nL = Luxury\nS = Sport");
+        String carType = input.next();
+
+        if (carType.equalsIgnoreCase("F")){
+            System.out.println("Family car");
+        } else if (carType.equalsIgnoreCase("L")){
+            System.out.println("Luxury car");
+        } else if (carType.equalsIgnoreCase("S")){
+            System.out.println("Sport car");
+        }
+        System.out.println("Enter brand");
+        String carBrand = input.next();
+        System.out.println("Enter model");
+        String carModel = input.next();
+        System.out.println("Enter fuel type");
+        String carFuelType = input.next();
+        System.out.println("Enter registration number (Plate)");
+        int carPlateNumber = input.nextInt();
+        System.out.println("Enter registration date");
+        String carRegistrationDate = input.next();
+        System.out.println("Enter how many km the car has driven (odometer)");
+        int carOdometer = input.nextInt();
+        if (carType.equalsIgnoreCase("F")){
+            System.out.println("Enter true for manual gear");
+            boolean familyManual = input.nextBoolean();
+            System.out.println("Enter true for air condition");
+            boolean familyAirCondition = input.nextBoolean();
+            System.out.println("Enter true for cruise control");
+            boolean familyCruiseControl = input.nextBoolean();
+            System.out.println("Enter true for 7 seats or more");
+            boolean familySevenSeatsOrMore = input.nextBoolean();
+
+            Family tempFamily = new Family(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, familyManual, familyAirCondition, familyCruiseControl, familySevenSeatsOrMore);
+            filehandler.getCarList().add(tempFamily);
+        } else if (carType.equalsIgnoreCase("L")){
+            System.out.println("Enter true for a higher ccm than 3000");
+            boolean luxuryCcm = input.nextBoolean();
+            System.out.println("Enter true for automatic gear");
+            boolean luxuryAutomatic = input.nextBoolean();
+            System.out.println("Enter true for air condition");
+            boolean luxuryAirCondition = input.nextBoolean();
+            System.out.println("Enter true for cruise control");
+            boolean luxuryCruiseControl = input.nextBoolean();
+
+            Luxury tempLuxury = new Luxury(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, luxuryCcm, luxuryAutomatic, luxuryAirCondition, luxuryCruiseControl);
+            filehandler.getCarList().add(tempLuxury);
+        } else if (carType.equalsIgnoreCase("S")){
+            System.out.println("Enter true for manual gear");
+            boolean sportManualGear = input.nextBoolean();
+            System.out.println("Enter true if horsepower is over 200");
+            boolean sportHp = input.nextBoolean();
+
+            Sport tempSport = new Sport(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, sportManualGear, sportHp);
+            filehandler.getCarList().add(tempSport);
+        }
+        System.out.println("Would you like to create another car? Y/N");
+        String option = input.next();
+        if (option.equalsIgnoreCase("y")){
+            createCar(filehandler, input);
+        }else if (option.equalsIgnoreCase("n")){
+            mainmenu(filehandler, input);
+        }
+
+
     }
 
     public static int getFreeCustomerID(FileHandler filehandler){

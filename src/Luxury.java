@@ -1,10 +1,10 @@
 public class Luxury extends Car {
-    private int ccm;
+    private boolean ccm;
     private boolean automaticGear;
     private boolean airCondition;
     private boolean cruiseControl;
 
-    public Luxury(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, int ccm, boolean automaticGear, boolean airCondition, boolean cruiseControl) {
+    public Luxury(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean ccm, boolean automaticGear, boolean airCondition, boolean cruiseControl) {
         super(carID, brand, model, fuelType, plateNumber, registrationDate, odometer);
         this.ccm = ccm;
         this.automaticGear = automaticGear;
@@ -22,11 +22,11 @@ public class Luxury extends Car {
                 '}';
     }
 
-    public int getCcm() {
+    public boolean isCcm() {
         return ccm;
     }
 
-    public void setCcm(int ccm) {
+    public void setCcm(boolean ccm) {
         this.ccm = ccm;
     }
 

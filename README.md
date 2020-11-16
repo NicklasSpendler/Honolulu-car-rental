@@ -2,11 +2,11 @@
 
 ##Todo
 - menu
-- create Customer
-- create Car
-- show car
-- show Customer
+- show car - Oliver
 - create Contract
+    * Reference til bil brug id
+    * Reference til Customer brug id
+    * Fra og med dato
+
 - show Contract
-- get free Car ID
-- get free Contract ID
+- get free Contract ID - Guobin
