@@ -174,7 +174,18 @@ public class FileHandler {
         writeCustomerToFile();
     }
 
-    public ArrayList<Rental> getContractList() {
+    public Customer getCustomerByID(int id){
+        Customer tempCustomer = new Customer();
+
+        for (int i = 0; i <= customerList.size() -1; i++){
+            if(id == customerList.get(i).getCustomerID()){
+                tempCustomer = customerList.get(i);
+            }
+        }
+        return tempCustomer;
+    }
+
+    public ArrayList<Rental> getRentalList() {
         return rentalList;
     }
 

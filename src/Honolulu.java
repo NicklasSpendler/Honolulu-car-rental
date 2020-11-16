@@ -12,7 +12,7 @@ public class Honolulu {
         filehandler.createFiles("contractData");
 
         Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, 2);
-        filehandler.getContractList().add(rental1);
+        filehandler.getRentalList().add(rental1);
 
 /*
         ArrayList<Customer> customers = new ArrayList<>();
@@ -235,13 +235,21 @@ public class Honolulu {
     }
 
     public static void createRental(FileHandler filehandler, Scanner input){
+        Customer selectedCustomer = new Customer();
+
         System.out.println("======Create Rental======");
         System.out.println("Select or create a new customer (S = Select / C = Create)");
         String choice = input.next();
         if(choice.equalsIgnoreCase("s")){
-
+            for (int i = 0; i <= filehandler.getCustomerList().size() -1; i++){
+                System.out.println(filehandler.getCustomerList().get(i).getCustomerID() + " " + filehandler.getCustomerList().get(i).getName());
+            }
+            System.out.println("Select the customer by ID: ");
+            int selectedCustomerID = input.nextInt();
+            selectedCustomer = filehandler.getCustomerByID(selectedCustomerID);
+            System.out.println(selectedCustomer.getName() + " has been selected");
         }else if(choice.equalsIgnoreCase("c")){
-            
+
         }
     }
 
