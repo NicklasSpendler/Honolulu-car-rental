@@ -98,13 +98,13 @@ public class FileHandler {
             while (myReader.hasNextLine()) {
                 String carType = myReader.next();
                 if (carType.contains("Family: ")) {
-                    Family tempFamily = new Family(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
+                    Family tempFamily = new Family(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempFamily);
                 } else if (carType.contains("Luxury: ")) {
-                    Luxury tempLuxury = new Luxury(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
+                    Luxury tempLuxury = new Luxury(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempLuxury);
                 } else if (carType.contains("Sport: ")) {
-                    Sport tempSport = new Sport(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean());
+                    Sport tempSport = new Sport(myReader.nextInt(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.next(), myReader.nextInt(), myReader.nextBoolean(), myReader.nextBoolean());
                     carList.add(tempSport);
                 }
             }
@@ -184,6 +184,28 @@ public class FileHandler {
         }
         return tempCustomer;
     }
+
+    public Car getCarByID(int id){
+        Car tempcar = new Car();
+
+        for(int i = 0; i <= carList.size() -1; i++){
+            if(id == carList.get(i).getCarID()){
+                tempcar = carList.get(i);
+            }
+        }
+        return tempcar;
+    }
+    public Rental getRentalByID(int id){
+        Rental tempRental = new Rental();
+
+        for(int i = 0; i <= rentalList.size() - 1; i++){
+            if(id == rentalList.get(i).getRentalID()){
+                tempRental = rentalList.get(i);
+            }
+        }
+        return tempRental;
+    }
+
 
     public ArrayList<Rental> getRentalList() {
         return rentalList;

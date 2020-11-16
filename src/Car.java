@@ -3,11 +3,11 @@ public class Car{
     private String brand;
     private String model;
     private String fuelType;
-    private int plateNumber;
+    private String plateNumber;
     private String registrationDate;
     private int odometer;
 
-    public Car(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer) {
+    public Car(int carID, String brand, String model, String fuelType, String plateNumber, String registrationDate, int odometer) {
         this.carID = carID;
         this.brand = brand;
         this.model = model;
@@ -66,11 +66,11 @@ public class Car{
         this.fuelType = fuelType;
     }
 
-    public int getPlateNumber() {
+    public String getPlateNumber() {
         return plateNumber;
     }
 
-    public void setPlateNumber(int plateNumber) {
+    public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
     }
 

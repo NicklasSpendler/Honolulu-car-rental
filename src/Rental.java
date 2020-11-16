@@ -6,9 +6,9 @@ public class Rental {
     private String toDate;
     private int maxKm;
     private int odometerStart;
-    private int plateNumber;
+    private String plateNumber;
 
-    public Rental(int rentalID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, int plateNumber) {
+    public Rental(int rentalID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, String plateNumber) {
         this.rentalID = rentalID;
         this.customerID = customerID;
         this.carID = carID;
@@ -17,6 +17,10 @@ public class Rental {
         this.maxKm = maxKm;
         this.odometerStart = odometerStart;
         this.plateNumber = plateNumber;
+    }
+
+    public Rental(){
+
     }
 
     @Override
@@ -89,11 +93,11 @@ public class Rental {
         this.odometerStart = odometerStart;
     }
 
-    public int getPlateNumber() {
+    public String getPlateNumber() {
         return plateNumber;
     }
 
-    public void setPlateNumber(int plateNumber) {
+    public void setPlateNumber(String plateNumber) {
         this.plateNumber = plateNumber;
     }
 }

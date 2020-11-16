@@ -4,7 +4,7 @@ public class Luxury extends Car {
     private boolean airCondition;
     private boolean cruiseControl;
 
-    public Luxury(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean ccm, boolean automaticGear, boolean airCondition, boolean cruiseControl) {
+    public Luxury(int carID, String brand, String model, String fuelType, String plateNumber, String registrationDate, int odometer, boolean ccm, boolean automaticGear, boolean airCondition, boolean cruiseControl) {
         super(carID, brand, model, fuelType, plateNumber, registrationDate, odometer);
         this.ccm = ccm;
         this.automaticGear = automaticGear;
@@ -14,7 +14,13 @@ public class Luxury extends Car {
 
     @Override
     public String toString() {
-        return "Luxury{" +
+        return "Luxury{" + "carID = " + getCarID() +
+                ", brand = " + getBrand() +
+                ", model = " + getModel() +
+                ", fuelType = " + getFuelType() +
+                ", platNumber = " + getPlateNumber() +
+                ", registrationDate = " + getRegistrationDate() +
+                ", odometer = " + getOdometer() +
                 "ccm=" + ccm +
                 ", automaticGear=" + automaticGear +
                 ", airCondition=" + airCondition +

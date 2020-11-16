@@ -2,7 +2,7 @@ public class Sport extends Car {
     private boolean manualGear;
     private boolean hp;
 
-    public Sport(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean manualGear, boolean hp) {
+    public Sport(int carID, String brand, String model, String fuelType, String plateNumber, String registrationDate, int odometer, boolean manualGear, boolean hp) {
         super(carID, brand, model, fuelType, plateNumber, registrationDate, odometer);
         this.manualGear = manualGear;
         this.hp = hp;
@@ -10,9 +10,15 @@ public class Sport extends Car {
 
     @Override
     public String toString() {
-        return "Sport{" +
-                "manualGear=" + manualGear +
-                ", hp=" + hp +
+        return "Sport{" + "carID = " + getCarID() +
+                ", brand = " + getBrand() +
+                ", model = " + getModel() +
+                ", fuelType = " + getFuelType() +
+                ", platNumber = " + getPlateNumber() +
+                ", registrationDate = " + getRegistrationDate() +
+                ", odometer = " + getOdometer() +
+                "manualGear = " + manualGear +
+                ", hp = " + hp +
                 '}';
     }
 

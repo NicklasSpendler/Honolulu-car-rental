@@ -11,7 +11,7 @@ public class Honolulu {
         filehandler.createFiles("carData");
         filehandler.createFiles("rentalData");
 
-        Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, 2);
+        Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, "2");
         filehandler.getRentalList().add(rental1);
 
 /*
@@ -91,18 +91,36 @@ public class Honolulu {
                 sportList.add((Sport) filehandler.getCarList().get(i));
             }
         }
-        System.out.println("======Family======");
-        for (int i = 0; i <= familyList.size() - 1; i++){
-            System.out.println(familyList.get(i));
+
+
+        if(familyList.isEmpty()){
+            System.out.println("There's no Family car(s)");
+        }else{
+            for (int i = 0; i <= familyList.size() - 1; i++){
+                System.out.println("======Family======");
+                System.out.println(familyList.get(i));
+            }
         }
-        System.out.println("======Luxury======");
-        for (int i = 0; i <= luxuryList.size() - 1; i++){
-            System.out.println(luxuryList.get(i));
+
+        if(luxuryList.isEmpty()){
+            System.out.println("There's no luxury car(s)");
+        }else{
+            for (int i = 0; i <= luxuryList.size() - 1; i++){
+                System.out.println("======Luxury======");
+                System.out.println(luxuryList.get(i));
+            }
         }
-        System.out.println("======Sport======");
-        for (int i = 0; i <= sportList.size() - 1; i++){
-            System.out.println(sportList.get(i));
+
+
+        if(sportList.isEmpty()){
+            System.out.println("There's no sport car(s)");
+        }else{
+            for (int i = 0; i <= sportList.size() - 1; i++){
+                System.out.println("======Sport======");
+                System.out.println(sportList.get(i));
+            }
         }
+
     }
 
     public static void showCustomer(FileHandler filehandler,Scanner input){
@@ -115,11 +133,11 @@ public class Honolulu {
                 privateCustomerList.add((PrivateCustomer) filehandler.getCustomerList().get(i));
             }
         }
-        System.out.println("======Company Custormers======");
+        System.out.println("======Company Customers======");
         for (int i = 0; i<= companyCustomerList.size() -1; i++){
             System.out.println(companyCustomerList.get(i));
         }
-        System.out.println("======Private Custormers======");
+        System.out.println("======Private Customers======");
         for (int i = 0; i<= privateCustomerList.size() -1; i++){
             System.out.println(privateCustomerList.get(i));
         }
@@ -204,7 +222,7 @@ public class Honolulu {
         System.out.println("Enter fuel type");
         String carFuelType = input.next();
         System.out.println("Enter registration number (Plate)");
-        int carPlateNumber = input.nextInt();
+        String carPlateNumber = input.next();
         System.out.println("Enter registration date");
         String carRegistrationDate = input.next();
         System.out.println("Enter how many km the car has driven (odometer)");
@@ -255,6 +273,21 @@ public class Honolulu {
 
     public static void createRental(FileHandler filehandler, Scanner input){
         Customer selectedCustomer = new Customer();
+        int selectedCustomerID = 0;
+
+        ArrayList<Family> familyList = new ArrayList<>();
+        ArrayList<Luxury> luxuryList = new ArrayList<>();
+        ArrayList<Sport> sportList = new ArrayList<>();
+
+        for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
+            if (filehandler.getCarList().get(i).getClass().getName() == "Family"){
+                familyList.add((Family) filehandler.getCarList().get(i));
+            }else if (filehandler.getCarList().get(i).getClass().getName() == "Luxury"){
+                luxuryList.add((Luxury) filehandler.getCarList().get(i));
+            }else if (filehandler.getCarList().get(i).getClass().getName() == "Sport"){
+                sportList.add((Sport) filehandler.getCarList().get(i));
+            }
+        }
 
         System.out.println("======Create Rental======");
         System.out.println("Select or create a new customer (S = Select / C = Create)");
@@ -264,13 +297,62 @@ public class Honolulu {
                 System.out.println(filehandler.getCustomerList().get(i).getCustomerID() + " " + filehandler.getCustomerList().get(i).getName());
             }
             System.out.println("Select the customer by ID: ");
-            int selectedCustomerID = input.nextInt();
+            selectedCustomerID = input.nextInt();
             selectedCustomer = filehandler.getCustomerByID(selectedCustomerID);
-            System.out.println(selectedCustomer.getName() + " has been selected");
         }else if(choice.equalsIgnoreCase("c")){
             int newCustomerID = getFreeCustomerID(filehandler);
             createCustomer(filehandler, input, false);
+            selectedCustomer = filehandler.getCustomerByID(newCustomerID);
+            selectedCustomerID = newCustomerID;
+        }
+        System.out.println(selectedCustomer.getName() + " has been selected");
+        System.out.println("======Family======");
+        if(familyList.size() == 0){
+            System.out.println("There's no family car");
+        }else{
+            for (int i = 0; i <= familyList.size() - 1; i++){
+                System.out.println(familyList.get(i));
+            }
+        }
+        System.out.println("======Luxury======");
+        if(luxuryList.size() == 0){
+            System.out.println("There is no luxury car");
+        }else {
+            for (int i = 0; i <= luxuryList.size() - 1; i++){
+                System.out.println(luxuryList.get(i));
+            }
+        }
+        System.out.println("======Sport======");
+        if (sportList.size() == 0){
+            System.out.println("There is no sport car");
+        }else{
+            for (int i = 0; i <= sportList.size() - 1; i++){
+                System.out.println(sportList.get(i));
+            }
+        }
+        System.out.println("Please select car by id");
+        int selectedCarID = input.nextInt();
+        System.out.println("Enter start date");
+        String startDate = input.next();
+        System.out.println("Enter end date");
+        String endDate = input.next();
+        System.out.println("Enter max KM");
+        int maxKM = input.nextInt();
 
+        int odometer = filehandler.getCarByID(selectedCarID).getOdometer();
+        String platenumber = filehandler.getCarByID(selectedCarID).getPlateNumber();
+
+        Rental newRental = new Rental(getFreeRentalID(filehandler), selectedCustomerID, selectedCarID, startDate, endDate, maxKM, odometer, platenumber);
+        System.out.println(newRental);
+        System.out.println("Does this look good? (Y = yes / Redo = R / C = Cancel");
+        String option = input.next();
+        if(option.equalsIgnoreCase("y")){
+            filehandler.getRentalList().add(newRental);
+            createMenu(filehandler, input);
+        }else if(option.equalsIgnoreCase("r")){
+            createRental(filehandler,input);
+        }else if(option.equalsIgnoreCase("c")){
+            createMenu(filehandler,input);
         }
     }
 
@@ -303,6 +385,20 @@ public class Honolulu {
             newID = Collections.max(usedID) + 1;
         }
 
+        return newID;
+    }
+
+    public static int getFreeRentalID(FileHandler fileHandler){
+        ArrayList<Integer> usedRentalID = new ArrayList<>();
+
+        for (int i = 0; i <= fileHandler.getRentalList().size() - 1; i++){
+            usedRentalID.add(fileHandler.getRentalList().get(i).getRentalID());
+        }
+        int newID = 1;
+
+        if (usedRentalID.size() != 0){
+            newID = Collections.max(usedRentalID) +1;
+        }
         return newID;
     }
 }

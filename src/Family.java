@@ -4,7 +4,7 @@ public class Family extends Car {
     private boolean cruiseControl;
     private boolean sevenSeatsOrMore;
 
-    public Family(int carID, String brand, String model, String fuelType, int plateNumber, String registrationDate, int odometer, boolean manualGear, boolean airCondition, boolean cruiseControl, boolean sevenSeatsOrMore) {
+    public Family(int carID, String brand, String model, String fuelType, String plateNumber, String registrationDate, int odometer, boolean manualGear, boolean airCondition, boolean cruiseControl, boolean sevenSeatsOrMore) {
         super(carID, brand, model, fuelType, plateNumber, registrationDate, odometer);
         this.manualGear = manualGear;
         this.airCondition = airCondition;
@@ -12,10 +12,17 @@ public class Family extends Car {
         this.sevenSeatsOrMore = sevenSeatsOrMore;
     }
 
+
     @Override
     public String toString() {
-        return "Family{" +
-                "manualGear=" + manualGear +
+        return "Family{" + "carID = " + getCarID() +
+                ", brand = " + getBrand() +
+                ", model = " + getModel() +
+                ", fuelType = " + getFuelType() +
+                ", platNumber = " + getPlateNumber() +
+                ", registrationDate = " + getRegistrationDate() +
+                ", odometer = " + getOdometer() +
+                ", manualGear=" + manualGear +
                 ", airCondition=" + airCondition +
                 ", cruiseControl=" + cruiseControl +
                 ", sevenSeatsOrMore=" + sevenSeatsOrMore +
