@@ -9,7 +9,7 @@ public class Honolulu {
 
         filehandler.createFiles("customerData");
         filehandler.createFiles("carData");
-        filehandler.createFiles("contractData");
+        filehandler.createFiles("rentalData");
 
         Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, 2);
         filehandler.getRentalList().add(rental1);
@@ -67,7 +67,7 @@ public class Honolulu {
         if(choice.equalsIgnoreCase("c")){
             createCar(filehandler, input);
         }else if(choice.equalsIgnoreCase("e")){
-            createCustomer(filehandler, input);
+            createCustomer(filehandler, input, true);
         }else if(choice.equalsIgnoreCase("r")){
             createRental(filehandler, input);
         }else if(choice.equalsIgnoreCase("B")){
@@ -125,7 +125,7 @@ public class Honolulu {
         }
     }
 
-    public static void createCustomer(FileHandler filehandler, Scanner input){
+    public static void createCustomer(FileHandler filehandler, Scanner input, Boolean redirectBackToMenu){
         int newID = getFreeCustomerID(filehandler);
 
         System.out.println("======Create Customer======");
@@ -173,10 +173,12 @@ public class Honolulu {
         }
         System.out.println("Would you like to create another Customer?");
         String option = input.next();
-        if(option.equalsIgnoreCase("y")){
-            createCar(filehandler,input);
-        }else if(option.equalsIgnoreCase("n")){
-            createMenu(filehandler, input);
+        if(redirectBackToMenu == true){
+            if(option.equalsIgnoreCase("y")){
+                createCar(filehandler,input);
+            }else if(option.equalsIgnoreCase("n")){
+                createMenu(filehandler, input);
+            }
         }
     }
 
@@ -266,6 +268,8 @@ public class Honolulu {
             selectedCustomer = filehandler.getCustomerByID(selectedCustomerID);
             System.out.println(selectedCustomer.getName() + " has been selected");
         }else if(choice.equalsIgnoreCase("c")){
+            int newCustomerID = getFreeCustomerID(filehandler);
+            createCustomer(filehandler, input, false);
 
         }
     }

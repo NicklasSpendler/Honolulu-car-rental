@@ -1,5 +1,5 @@
 public class Rental {
-    private int contractID;
+    private int rentalID;
     private int customerID;
     private int carID;
     private String fromDate;
@@ -8,8 +8,8 @@ public class Rental {
     private int odometerStart;
     private int plateNumber;
 
-    public Rental(int contractID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, int plateNumber) {
-        this.contractID = contractID;
+    public Rental(int rentalID, int customerID, int carID, String fromDate, String toDate, int maxKm, int odometerStart, int plateNumber) {
+        this.rentalID = rentalID;
         this.customerID = customerID;
         this.carID = carID;
         this.fromDate = fromDate;
@@ -22,7 +22,7 @@ public class Rental {
     @Override
     public String toString() {
         return "Rental{" +
-                "contractID=" + contractID +
+                "contractID=" + rentalID +
                 ", customerID=" + customerID +
                 ", carID=" + carID +
                 ", fromDate='" + fromDate + '\'' +
@@ -33,12 +33,12 @@ public class Rental {
                 '}';
     }
 
-    public int getContractID() {
-        return contractID;
+    public int getRentalID() {
+        return rentalID;
     }
 
-    public void setContractID(int contractID) {
-        this.contractID = contractID;
+    public void setRentalID(int rentalID) {
+        this.rentalID = rentalID;
     }
 
     public int getCarID() {

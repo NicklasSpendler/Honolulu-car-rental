@@ -44,12 +44,12 @@ public class FileHandler {
 
     public void writeRentalToFile(){
         try {
-            FileWriter clearFile = new FileWriter("contractData.txt", false);
+            FileWriter clearFile = new FileWriter("rentalData.txt", false);
             clearFile.write("");
 
-            FileWriter myWriter = new FileWriter("contractData.txt", true);
+            FileWriter myWriter = new FileWriter("rentalData.txt", true);
             for (int i = 0; i <= rentalList.size() - 1; i++){
-                myWriter.write(rentalList.get(i).getContractID() + " " + rentalList.get(i).getCustomerID() + " " + rentalList.get(i).getFromDate() + " " + rentalList.get(i).getToDate() + " " + rentalList.get(i).getMaxKm() + " " + rentalList.get(i).getOdometerStart() + " " + rentalList.get(i).getPlateNumber());
+                myWriter.write(rentalList.get(i).getRentalID() + " " + rentalList.get(i).getCustomerID() + " " + rentalList.get(i).getFromDate() + " " + rentalList.get(i).getToDate() + " " + rentalList.get(i).getMaxKm() + " " + rentalList.get(i).getOdometerStart() + " " + rentalList.get(i).getPlateNumber());
                 if (i != rentalList.size() - 1){
                     myWriter.write("\n");
                 }
@@ -138,7 +138,7 @@ public class FileHandler {
         ArrayList<Rental> rentalArray = new ArrayList<>();
 
         try {
-            File contractFile = new File("contractData.txt");
+            File contractFile = new File("rentalData.txt");
             Scanner myReader = new Scanner(contractFile);
 
             while (myReader.hasNextLine()){
