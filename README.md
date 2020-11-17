@@ -12,5 +12,7 @@
 - Edit Rental
 - Edit Car
 
+- make show Rentals better (Show car name, customer name, ect instead of IDS)
+
 - show Rental
 - get free Rental ID - Guobin
