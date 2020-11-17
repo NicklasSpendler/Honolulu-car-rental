@@ -11,8 +11,9 @@ public class Honolulu {
         filehandler.createFiles("carData");
         filehandler.createFiles("rentalData");
 
-        Rental rental1 = new Rental(1, 1, 2, "lol", "lol", 2, 2, "2");
-        filehandler.getRentalList().add(rental1);
+        filehandler.readCarFromFile();
+        filehandler.readCustomerFromFile();
+        filehandler.readRentalFromFile();
 
 /*
         ArrayList<Customer> customers = new ArrayList<>();
@@ -26,8 +27,6 @@ public class Honolulu {
         filehandler.getCustomerList().add(customer2);
 
  */
-        
-        filehandler.readCustomerFromFile();
         mainmenu(filehandler, input);
     }
 
@@ -82,7 +81,6 @@ public class Honolulu {
         ArrayList<Luxury> luxuryList = new ArrayList<>();
         ArrayList<Sport> sportList = new ArrayList<>();
         System.out.println("======List of all cars======");
-        System.out.println("E = Edit cars | D = Delete cars");
         for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
             if (filehandler.getCarList().get(i).getClass().getName() == "Family"){
                 familyList.add((Family) filehandler.getCarList().get(i));
@@ -92,29 +90,20 @@ public class Honolulu {
                 sportList.add((Sport) filehandler.getCarList().get(i));
             }
         }
-        for (int i = 0; i <= familyList.size() - 1; i++){
-            boolean ans = familyList.isEmpty();
-            if (ans == true){
-                System.out.println(" ");
-            }else{
+        if (!familyList.isEmpty()){
+            for (int i = 0; i <= familyList.size() - 1; i++){
                 System.out.println("======Family======");
                 System.out.println(familyList.get(i));
             }
         }
-        for (int i = 0; i <= luxuryList.size() - 1; i++){
-            boolean ans = luxuryList.isEmpty();
-            if (ans == true) {
-                System.out.println(" ");
-            }else{
+        if (!luxuryList.isEmpty()){
+            for (int i = 0; i <= luxuryList.size() - 1; i++){
                 System.out.println("======Luxury======");
                 System.out.println(luxuryList.get(i));
             }
         }
-        for (int i = 0; i <= sportList.size() - 1; i++){
-            boolean ans = sportList.isEmpty();
-            if (ans == true){
-                System.out.println(" ");
-            }else {
+        if (!sportList.isEmpty()){
+            for (int i = 0; i <= sportList.size() - 1; i++) {
                 System.out.println("======Sport======");
                 System.out.println(sportList.get(i));
             }
@@ -272,36 +261,13 @@ public class Honolulu {
         System.out.println("Enter how many km the car has driven (odometer)");
         int carOdometer = input.nextInt();
         if (carType.equalsIgnoreCase("F")){
-            System.out.println("Enter true for manual gear");
-            boolean familyManual = input.nextBoolean();
-            System.out.println("Enter true for air condition");
-            boolean familyAirCondition = input.nextBoolean();
-            System.out.println("Enter true for cruise control");
-            boolean familyCruiseControl = input.nextBoolean();
-            System.out.println("Enter true for 7 seats or more");
-            boolean familySevenSeatsOrMore = input.nextBoolean();
-
-            Family tempFamily = new Family(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, familyManual, familyAirCondition, familyCruiseControl, familySevenSeatsOrMore);
+            Family tempFamily = new Family(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, true, true, true, true);
             filehandler.getCarList().add(tempFamily);
         } else if (carType.equalsIgnoreCase("L")){
-            System.out.println("Enter true for a higher ccm than 3000");
-            boolean luxuryCcm = input.nextBoolean();
-            System.out.println("Enter true for automatic gear");
-            boolean luxuryAutomatic = input.nextBoolean();
-            System.out.println("Enter true for air condition");
-            boolean luxuryAirCondition = input.nextBoolean();
-            System.out.println("Enter true for cruise control");
-            boolean luxuryCruiseControl = input.nextBoolean();
-
-            Luxury tempLuxury = new Luxury(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, luxuryCcm, luxuryAutomatic, luxuryAirCondition, luxuryCruiseControl);
+            Luxury tempLuxury = new Luxury(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, true, true, true, true);
             filehandler.getCarList().add(tempLuxury);
         } else if (carType.equalsIgnoreCase("S")){
-            System.out.println("Enter true for manual gear");
-            boolean sportManualGear = input.nextBoolean();
-            System.out.println("Enter true if horsepower is over 200");
-            boolean sportHp = input.nextBoolean();
-
-            Sport tempSport = new Sport(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, sportManualGear, sportHp);
+            Sport tempSport = new Sport(newID, carBrand, carModel, carFuelType, carPlateNumber, carRegistrationDate, carOdometer, true, true);
             filehandler.getCarList().add(tempSport);
         }
         System.out.println("Would you like to create another car? Y/N");
@@ -450,7 +416,6 @@ public class Honolulu {
         if(newEmail != "0"){
             selectedCustomer.setEmail(newEmail);
         }
-
         if(selectedCustomer.getClass().getName() == "PrivateCustomer"){
             System.out.println("Change car license number from: " + ((PrivateCustomer) selectedCustomer).getLicenseNumber());
             int newCarLicenseNumber = input.nextInt();
@@ -463,7 +428,6 @@ public class Honolulu {
             if(newCarLicenseNumber != 0){
                 ((PrivateCustomer) selectedCustomer).setDriver_since_date(newDriverSinceDate);
             }
-
         }else if(selectedCustomer.getClass().getName() == "CompanyCustomer") {
             System.out.println("Change company name from: " + ((CompanyCustomer) selectedCustomer).getCompany_name());
             String newCustomerName = input.next();
@@ -502,7 +466,7 @@ public class Honolulu {
     }
 
     // Laver videre senere
-    public static void editRental(FileHandler filehandler, Scanner inpiut, int selectedID){
+    public static void editRental(FileHandler filehandler, Scanner input, int selectedID){
         int index = 0;
         Rental selectedRental = new Rental();
 
@@ -513,11 +477,20 @@ public class Honolulu {
             }
         }
 
-        System.out.println("Do you want to change the customer from: " + filehandler.getCustomerByID(selectedRental.getCustomerID()).getName());
+        System.out.println("Change the customer from: " + filehandler.getCustomerByID(selectedRental.getCustomerID()).getName());
         for (int i = 0; i<= filehandler.getCustomerList().size() -1; i++){
             System.out.println(filehandler.getCustomerList().get(i).getCustomerID() + " " + filehandler.getCustomerList().get(i).getName());
         }
-        System.out.println("please select the new customer by ID.");
+        System.out.println("Select new customer by ID");
+        int newCustomerID = input.nextInt();
+        if(newCustomerID != 0){
+            selectedRental.setCustomerID(newCustomerID);
+        }
+        System.out.println("Change the car from: " + filehandler.getCarByID(selectedRental.getCarID()).getCarID() + " " + filehandler.getCarByID(selectedRental.getCarID()).getModel());
+        for (int i = 0; i <= filehandler.getCarList().size() -1; i++){
+            System.out.println(filehandler.getCarList().get(i).getCarID() + " " + filehandler.getCarList().get(i).getModel());
+        }
+        System.out.println("Select the new Car by ID");
 
     }
 
@@ -577,7 +550,7 @@ public class Honolulu {
     }
 
     public static void deleteCar(FileHandler filehandler, Scanner input, int selectedID){
-        
+
     }
 
     public static int getFreeCustomerID(FileHandler filehandler){

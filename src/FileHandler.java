@@ -134,7 +134,8 @@ public class FileHandler {
             e.printStackTrace();
         }
     }
-    public static void readContractFromFile(){
+
+    public static void readRentalFromFile(){
         ArrayList<Rental> rentalArray = new ArrayList<>();
 
         try {
