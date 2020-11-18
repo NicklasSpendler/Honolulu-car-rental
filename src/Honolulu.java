@@ -132,14 +132,16 @@ public class Honolulu {
                 filehandler.getRentalList().get(i);
             }
         }
-        System.out.println("E = Edit / D = Delete / B = Back");
+        System.out.println("E = Edit | D = Delete | B = Back");
         String option = input.next();
         if(option.equalsIgnoreCase("e")){
             System.out.println("Please select ID: ");
             int selectedID = input.nextInt();
             editRental(filehandler, input, selectedID);
         }else if(option.equalsIgnoreCase("d")){
-
+            System.out.println("Chose the ID to delete");
+            int selectedID = input.nextInt();
+            deleteRental(filehandler, input, selectedID);
         }else{
             showMenu(filehandler, input);
         }
@@ -163,14 +165,16 @@ public class Honolulu {
         for (int i = 0; i<= privateCustomerList.size() -1; i++){
             System.out.println(privateCustomerList.get(i));
         }
-        System.out.println("E = Edit / D = Delete / B = Back");
+        System.out.println("E = Edit | D = Delete |  B = Back");
         String option = input.next();
         if(option.equalsIgnoreCase("e")){
             System.out.println("Please select ID");
             int selectedID = input.nextInt();
             editCustomer(filehandler, input, selectedID);
         }else if(option.equalsIgnoreCase("d")){
-
+            System.out.println("Chose the ID to delete");
+            int selectedID = input.nextInt();
+            deleteCustomer(filehandler, input, selectedID);
         }else{
             showMenu(filehandler, input);
         }
@@ -486,12 +490,55 @@ public class Honolulu {
         if(newCustomerID != 0){
             selectedRental.setCustomerID(newCustomerID);
         }
+
         System.out.println("Change the car from: " + filehandler.getCarByID(selectedRental.getCarID()).getCarID() + " " + filehandler.getCarByID(selectedRental.getCarID()).getModel());
         for (int i = 0; i <= filehandler.getCarList().size() -1; i++){
             System.out.println(filehandler.getCarList().get(i).getCarID() + " " + filehandler.getCarList().get(i).getModel());
         }
         System.out.println("Select the new Car by ID");
+        int newCarID = input.nextInt();
+        if(newCarID != 0){
+            selectedRental.setCarID(newCarID);
+        }
 
+        System.out.println("Change from date: " + selectedRental.getFromDate());
+        String newFromDate = input.next();
+        if(newFromDate != "0"){
+            selectedRental.setFromDate(newFromDate);
+        }
+
+        System.out.println("Change to date: " + selectedRental.getToDate());
+        String newToDate = input.next();
+        if(newToDate != "0"){
+            selectedRental.setToDate(newToDate);
+        }
+
+        System.out.println("Change max KM from: " + selectedRental.getMaxKm());
+        int newMaxKM = input.nextInt();
+        if(newMaxKM != 0){
+            selectedRental.setMaxKm(newMaxKM);
+        }
+
+        System.out.println("Change odometer from: " + selectedRental.getOdometerStart());
+        int newOdometer = input.nextInt();
+        if(newOdometer != 0){
+            selectedRental.setOdometerStart(newOdometer);
+        }
+
+        selectedRental.setPlateNumber(filehandler.getCarByID(selectedRental.getCarID()).getPlateNumber());
+
+        System.out.println("The new rental looks like this:\n" + selectedRental);
+
+        System.out.println("Confirm = y | R = Redo | C = Cancel");
+        String option = input.next();
+        if(option.equalsIgnoreCase("y")){
+            filehandler.getRentalList().set(index, selectedRental);
+            showRental(filehandler, input);
+        }else if(option.equalsIgnoreCase("r")){
+            editRental(filehandler, input, selectedID);
+        }else{
+            showRental(filehandler, input);
+        }
     }
 
     public static void editCar(FileHandler fileHandler, Scanner input, int chooseID){
@@ -550,7 +597,51 @@ public class Honolulu {
     }
 
     public static void deleteCar(FileHandler filehandler, Scanner input, int selectedID){
+        for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
+            if (filehandler.getCarList().get(i).getCarID() == selectedID){
+                System.out.println("Are you sure you want to delete: " + filehandler.getCarList().get(i).getCarID() + " " + filehandler.getCarList().get(i).getModel() + "\nAnswer with Y/N");
+                String answer = input.next();
+                if (answer.equalsIgnoreCase("y")){
+                    System.out.println("Successfully deleted: " + filehandler.getCarList().get(i).getModel() + "\nWith carID: " + filehandler.getCarList().get(i).getCarID());
+                    filehandler.getCarList().remove(i);
+                }else{
+                    showCar(filehandler, input);
+                }
+            }
+        }
+        showCar(filehandler, input);
+    }
 
+    public static void deleteCustomer(FileHandler filehandler, Scanner input, int selectedID){
+        for (int i = 0; i <= filehandler.getCustomerList().size() - 1; i++){
+            if (filehandler.getCustomerList().get(i).getCustomerID() == selectedID){
+                System.out.println("Are you sure you want to delete: " + filehandler.getCustomerList().get(i).getCustomerID() + " " + filehandler.getCustomerList().get(i).getName() + "\nAnswer with Y/N");
+                String answer = input.next();
+                if (answer.equalsIgnoreCase("y")){
+                    System.out.println("Successfully deleted: " + filehandler.getCustomerList().get(i).getName() + "\nWith customerID: " + filehandler.getCustomerList().get(i).getCustomerID());
+                    filehandler.getCustomerList().remove(i);
+                }else{
+                    showCustomer(filehandler, input);
+                }
+            }
+        }
+        showCustomer(filehandler, input);
+    }
+
+    public static void deleteRental(FileHandler filehandler, Scanner input, int selectedID){
+        for (int i = 0; i <= filehandler.getRentalList().size() - 1; i++){
+            if (filehandler.getRentalList().get(i).getRentalID() == selectedID){
+                System.out.println("Are you sure you want to delete: " + filehandler.getRentalList().get(i).getRentalID() + " " + filehandler.getCustomerByID(filehandler.getCustomerList().get(i).getCustomerID()).getName() + "\nAnswer with Y/N");
+                String answer = input.next();
+                if (answer.equalsIgnoreCase("y")){
+                    System.out.println("Successfully deleted: " + filehandler.getRentalList().get(i).getRentalID() + "\nWith customerID: " + filehandler.getCustomerList().get(i).getCustomerID());
+                    filehandler.getRentalList().remove(i);
+                }else{
+                    showRental(filehandler, input);
+                }
+            }
+        }
+        showRental(filehandler, input);
     }
 
     public static int getFreeCustomerID(FileHandler filehandler){

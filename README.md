@@ -2,17 +2,7 @@
 
 ##Todo
 - menu
-- show car - Oliver
-- create Rental - Nicklas
-    * Reference til bil brug id
-    * Reference til Customer brug id
-    * Fra og med dato
-
-- Edit Customer
-- Edit Rental
-- Edit Car
 
 - make show Rentals better (Show car name, customer name, ect instead of IDS)
-
-- show Rental
-- get free Rental ID - Guobin
+- make delete car to perfection (Delete rentals that's related to car)
+- ditto Customer  (Delete rentals that's related to Customer)
