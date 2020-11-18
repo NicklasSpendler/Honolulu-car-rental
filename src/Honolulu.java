@@ -370,7 +370,6 @@ public class Honolulu {
         }
     }
 
-    // Skal have lavet edit customer
     public static void editCustomer(FileHandler filehandler, Scanner input, int selectedID){
         int index = 0;
         Customer selectedCustomer = new Customer();
@@ -469,7 +468,6 @@ public class Honolulu {
 
     }
 
-    // Laver videre senere
     public static void editRental(FileHandler filehandler, Scanner input, int selectedID){
         int index = 0;
         Rental selectedRental = new Rental();
@@ -597,12 +595,20 @@ public class Honolulu {
     }
 
     public static void deleteCar(FileHandler filehandler, Scanner input, int selectedID){
+
         for (int i = 0; i <= filehandler.getCarList().size() - 1; i++){
             if (filehandler.getCarList().get(i).getCarID() == selectedID){
                 System.out.println("Are you sure you want to delete: " + filehandler.getCarList().get(i).getCarID() + " " + filehandler.getCarList().get(i).getModel() + "\nAnswer with Y/N");
                 String answer = input.next();
                 if (answer.equalsIgnoreCase("y")){
                     System.out.println("Successfully deleted: " + filehandler.getCarList().get(i).getModel() + "\nWith carID: " + filehandler.getCarList().get(i).getCarID());
+
+                    for(int k = 0; k <= filehandler.getRentalList().size() -1; k++){
+                        if(filehandler.getRentalList().get(i).getCarID() == selectedID){
+                            filehandler.getRentalList().remove(i);
+                        }
+                    }
+
                     filehandler.getCarList().remove(i);
                 }else{
                     showCar(filehandler, input);
@@ -620,6 +626,11 @@ public class Honolulu {
                 if (answer.equalsIgnoreCase("y")){
                     System.out.println("Successfully deleted: " + filehandler.getCustomerList().get(i).getName() + "\nWith customerID: " + filehandler.getCustomerList().get(i).getCustomerID());
                     filehandler.getCustomerList().remove(i);
+                    for (int k = 0; k <= filehandler.getRentalList().size() - 1; k++){
+                        if (filehandler.getRentalList().get(k).getCustomerID() == selectedID){
+                            filehandler.getRentalList().remove(k);
+                        }
+                    }
                 }else{
                     showCustomer(filehandler, input);
                 }
