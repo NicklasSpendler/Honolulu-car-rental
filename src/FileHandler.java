@@ -219,7 +219,4 @@ public class FileHandler {
     public ArrayList<Car> getCarList() {
         return carList;
     }
-
-
-
 }
