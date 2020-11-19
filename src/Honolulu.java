@@ -25,8 +25,8 @@ public class Honolulu {
 
         filehandler.getCustomerList().add(customer1);
         filehandler.getCustomerList().add(customer2);
-
  */
+
         mainmenu(filehandler, input);
     }
 
@@ -378,6 +378,7 @@ public class Honolulu {
             if(selectedID == filehandler.getCustomerList().get(i).getCustomerID()){
                 index = i;
                 selectedCustomer = filehandler.getCustomerList().get(i);
+                break;
             }
         }
 
@@ -476,6 +477,7 @@ public class Honolulu {
             if(selectedID == filehandler.getRentalList().get(i).getRentalID()){
                 index = i;
                 selectedRental = filehandler.getRentalList().get(i);
+                break;
             }
         }
 
@@ -547,6 +549,7 @@ public class Honolulu {
             if (fileHandler.getCarList().get(i).getCarID() == chooseID){
                 tempCar = fileHandler.getCarList().get(i);
                 indexNumber = i;
+                break;
             }
         }
         System.out.println("Change brand from: " + tempCar.getBrand() + " to: ");
@@ -613,6 +616,7 @@ public class Honolulu {
                 }else{
                     showCar(filehandler, input);
                 }
+                break;
             }
         }
         showCar(filehandler, input);
@@ -634,6 +638,7 @@ public class Honolulu {
                 }else{
                     showCustomer(filehandler, input);
                 }
+                break;
             }
         }
         showCustomer(filehandler, input);
@@ -651,6 +656,7 @@ public class Honolulu {
                     showRental(filehandler, input);
                 }
             }
+            break;
         }
         showRental(filehandler, input);
     }
